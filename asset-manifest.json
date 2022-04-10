@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-hanghae-week1/static/css/main.e6c13ad2.css",
+    "main.js": "/react-hanghae-week1/static/js/main.891ca815.js",
+    "index.html": "/react-hanghae-week1/index.html",
+    "main.e6c13ad2.css.map": "/react-hanghae-week1/static/css/main.e6c13ad2.css.map",
+    "main.891ca815.js.map": "/react-hanghae-week1/static/js/main.891ca815.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.891ca815.js"
+  ]
+}
