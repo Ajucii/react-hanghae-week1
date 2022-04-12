@@ -1,7 +1,8 @@
 import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../../firebase";
 
-// 액션 타입을 정해줍니다.
+
+// 액션 타입
 const CREATE = "word/CREATE";
 const LOAD = "word/LOAD";
 const UPDATE = "word/UPDATE";
@@ -9,8 +10,7 @@ const DELETE = "word/DELETE";
 const LOADED = "word/LOADED";
 const REUPDATE = "word/REUPDATE";
 
-
-// 초기 상태값을 만들어줍니다.
+// 초기값
 const initialState = {
     is_loaded: false,
     list: [],
@@ -49,6 +49,8 @@ export const reupdateWord = (word_index) => {
 
 
 
+
+// 미들웨어
 export const loadWordFB = () => {
     return async function (dispatch) {
         const word_data = await getDocs(query(collection(db, "word"), orderBy("createdAt", "desc")));
@@ -130,8 +132,9 @@ export const deleteWordFB = (word_id) => {
 
 
 
-// 리듀서예요.
-// 실질적으로 store에 들어가 있는 데이터를 변경하는 곳이죠!
+
+
+// 리듀서
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
 

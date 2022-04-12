@@ -1,12 +1,12 @@
 import styled from "styled-components"
 import { useSelector } from "react-redux"
 
-
+// 단어 프로그레스바 컴포넌트
 const Progress = () => {
 
     const word_list = useSelector((state) => state.word.list);
 
-
+    // 완료된 단어에 대해서도 카운트 적용
     let count = 0;
     word_list.map((b, index) => {
         if (b.completed) {
@@ -18,7 +18,6 @@ const Progress = () => {
     return (
         <ProgressBar>
             <HighLight width={(count / word_list.length) * 100 + "%"} />
-
         </ProgressBar>
 
     )

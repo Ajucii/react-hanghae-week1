@@ -6,6 +6,7 @@ import icon from "../add_icon.png";
 import Progress from "./Progress";
 
 
+// 메인 페이지
 const WordList = () => {
 
   const history = useHistory();

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import AbcIcon from '@mui/icons-material/Abc';
 
-
+// 로딩 화면 컴포넌트
 const Spinner = () => {
 
     return (
