@@ -6,71 +6,62 @@ import icon from "../add_icon.png";
 import Progress from "./Progress";
 
 
-
 const WordList = () => {
 
-    const history = useHistory();
-    const word_lists = useSelector((state) => state.word.list);
-    const dispatch = useDispatch();
+  const history = useHistory();
+  const word_lists = useSelector((state) => state.word.list);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <div>
+        <h1 style={{ color: "#1FC69D" }}>MY DICTIONARY</h1>
+        <Progress />
+        <ListStyle>
+          {word_lists.map((list, index) => {
+            return (
+              <WordStyle
+                key={index}
+                completed={list.completed}
+              >
+                <IconStyle>
+                  <button onClick={() => {
+                    dispatch(deleteWordFB(word_lists[index].id));
+                  }}>삭제</button>
+                  <button onClick={() => {
+                    if (list.completed === false) {
+                      dispatch(updateWordFB(word_lists[index].id));
+                    } else {
+                      dispatch(reupdateWordFB(word_lists[index].id));
+                    }
+                  }}>
+                    {list.completed ? "취소" : "완료"}
+                  </button>
+
+                </IconStyle>
+
+                <p>단어</p>
+
+                <h3>{list.word}</h3>
+                <p>뜻</p>
+                <h3 style={{ whiteSpace: "pre-wrap" }}>{list.mean}</h3>
+                {list.ex === "" ? null : <p>예시</p>}
+                <h3 className="ex" style={{ whiteSpace: "pre-wrap" }}>{list.ex}</h3>
+
+              </WordStyle>
+            )
+          })}
+        </ListStyle>
+
+      </div>
+
+      <Button onClick={() => {
+        history.push("/add");
+      }}><img src={icon}></img></Button>
 
 
-    // const isChecked = useSelector((state) => state.word.list);
-    // console.log(isChecked);
-    // // const [isChecked, setIsChecked] = useState(false);
-
-
-
-    return (
-        <div>
-            <div>
-                <h1 style={{ color: "#1FC69D" }}>MY DICTIONARY</h1>
-                <Progress />
-                <ListStyle>
-                    {word_lists.map((list, index) => {
-                        return (
-                            <WordStyle
-                                key={index}
-                                completed={list.completed}
-                            >
-                                <IconStyle>
-                                    <button onClick={() => {
-                                        dispatch(deleteWordFB(word_lists[index].id));
-                                    }}>삭제</button>
-                                    <button onClick={() => {
-                                        if (list.completed === false) {
-                                            dispatch(updateWordFB(word_lists[index].id));
-                                        } else {
-                                            dispatch(reupdateWordFB(word_lists[index].id));
-                                        }
-                                    }}>
-                                        {list.completed ? "취소" : "완료"}
-                                    </button>
-
-                                </IconStyle>
-
-                                <p>단어</p>
-
-                                <h3>{list.word}</h3>
-                                <p>뜻</p>
-                                <h3 style={{ whiteSpace: "pre-wrap" }}>{list.mean}</h3>
-                                <p>예시</p>
-                                <h3 className="ex">{list.ex}</h3>
-
-
-                            </WordStyle>
-                        )
-                    })}
-                </ListStyle>
-
-            </div>
-
-            <Button onClick={() => {
-                history.push("/add");
-            }}><img src={icon}></img></Button>
-
-
-        </div >
-    )
+    </div >
+  )
 }
 
 const ListStyle = styled.div`
@@ -83,7 +74,6 @@ const ListStyle = styled.div`
     max-height: 60vh;
     padding-right: -10px;
     margin-right: -6px;
-    /* width : 100%; */
     ::-webkit-scrollbar { width: 5px; } 
     ::-webkit-scrollbar-thumb { 
         background-color: #1FC69D;
@@ -155,7 +145,6 @@ const IconStyle = styled.div`
 const Button = styled.button`
     border: none;
     background: none;
-    
     
 
     & img{

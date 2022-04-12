@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import AbcIcon from '@mui/icons-material/Abc';
-const Spinner = (props) => {
+
+
+const Spinner = () => {
+
     return (
         <Outter>
             <AbcIcon style={{

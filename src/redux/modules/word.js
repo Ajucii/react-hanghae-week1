@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy, limit } from "firebase/firestore";
+import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../../firebase";
 
 // 액션 타입을 정해줍니다.
@@ -9,11 +9,13 @@ const DELETE = "word/DELETE";
 const LOADED = "word/LOADED";
 const REUPDATE = "word/REUPDATE";
 
+
 // 초기 상태값을 만들어줍니다.
 const initialState = {
     is_loaded: false,
     list: [],
 };
+
 
 //추가
 export const createWord = (word) => {
@@ -68,7 +70,9 @@ export const addWordFB = (word) => {
         dispatch(isLoaded(false));
 
         const docRef = await addDoc(collection(db, "word"), word);
+
         const word_data = { id: docRef.id, ...word };
+
 
         dispatch(createWord(word_data))
     }
@@ -88,6 +92,8 @@ export const updateWordFB = (word_id) => {
         dispatch(updateWord(word_index));
     }
 }
+
+
 
 export const reupdateWordFB = (word_id) => {
     return async function (dispatch, getState) {
@@ -175,7 +181,6 @@ export default function reducer(state = initialState, action = {}) {
         case "word/LOADED": {
             return { ...state, is_loaded: action.loaded }
         }
-
 
 
         default:
