@@ -1,2 +1,2 @@
-# react Todo
+# My Dictionary
 https://noredux.shop/
